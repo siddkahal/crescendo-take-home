@@ -59,8 +59,6 @@ def user_auth_callback():
 
         pull_count_result = requests.get('https://api.github.com/repos/{owner}/{repo}/pulls'.format(owner=user_data['login'], repo=repo_data['name']), headers={'Authorization':'token {}'.format(access_token),'Accept':'application/json'})
         pull_count_list = json.loads(pull_count_result.text)
-
-        print(repo_data["owner"]["login"])
         
         if (len(pull_count_list)):
             pull_count = pull_count_list[0]['number']
