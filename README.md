@@ -15,3 +15,9 @@
 4. Look into 'flask_dance' and specifically 'make_github_blueprint'. This library makes it easier to work with the data returned form the GitHub endpoints.
 
 ## Screenshots: ##
+
+<img width="1265" alt="HomePage" src="https://user-images.githubusercontent.com/19416227/135974812-cc53d906-348e-422c-a511-2af70437e319.png">
+
+<img width="720" alt="AuthPage" src="https://user-images.githubusercontent.com/19416227/135974868-2ae14fa0-8098-4e7f-bd41-fe9141ea51f4.png">
+
+<img width="1262" alt="ReposPage" src="https://user-images.githubusercontent.com/19416227/135974901-acdf24c9-408f-4188-b677-411ce6a2e47c.png">
