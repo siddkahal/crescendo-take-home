@@ -18,7 +18,7 @@ def index():
 def activation_code():
     OCTACAT = os.getenv('OCTACAT')
     entered_code = request.form.get('activation_code')
-    repos_string = session[os.getenv('USER_LOGIN')]
+    repos_string = os.getenv('USER_REPOS')
     repos = json.loads(repos_string)
 
     if (OCTACAT == entered_code):
@@ -73,18 +73,21 @@ def user_auth_callback():
     user_login = user_data['login']
 
     os.environ['USER_LOGIN'] = user_login
+    session_flag = os.getenv('SESSION_FLAG')
 
-    if (user_login in session ):
-        session.pop(os.environ['USER_LOGIN'], None)
+    if (session_flag == 'true'):
+        os.environ['SESSION_FLAG'] = 'false'
         return render_template("repos.html", repositories=repos)
     else:
-        session[user_login] = json.dumps(repos)
+        os.environ['SESSION_FLAG'] = 'true'
+        os.environ['USER_REPOS'] = json.dumps(repos)
         return render_template('auth.html')
 
 def main():
     os.environ['GITHUB_CLIENT_ID'] = sys.argv[1]
     os.environ['GITHUB_CLIENT_SECRET'] = sys.argv[2]
     os.environ['OCTACAT'] = sys.argv[3]
+    os.environ['SESSION_FLAG'] = 'false'
     app.config['SECRET_KEY'] = 'shonysiddsecretkey'
     app.run(debug=True)
 
