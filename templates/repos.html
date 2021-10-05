@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h2 style="margin-bottom:28px;">Crescendo</h2>
+
+  <h4 style="margin-bottom:28px;">Your Repos:</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Stars</th>
+        <th scope="col">#PRs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for repo in repositories %}
+        <tr>
+          <th scope="row">{{ repo.data.name }}</th>
+          <td>{{ repo.data.owner.login }}</td>
+          <td>{{ repo.data.stargazers_count }}</td>
+          <td>{{ repo.pull_count }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
